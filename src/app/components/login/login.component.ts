@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { } from "@angular/forms";
-import { HttpAuthService, variabls } from "http-auth-israel";
-import { environment } from 'src/environments/environment';
+import { Router } from "@angular/router";
+import { HttpAuthenticationZnService } from "http-authentication-is";
 
 @Component({
   selector: 'app-login',
@@ -10,15 +10,19 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private httpAuthService: HttpAuthService) { }
+  constructor(
+    private authService: HttpAuthenticationZnService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
 
   onLogin(form): void {
-    variabls.url = `${environment.urlApi}/auth/token`;
-    this.httpAuthService.setUrlLogin('logout');
-    this.httpAuthService.login(form.value).subscribe(data => { });
+    const urlAPi: string = 'http://155.138.216.49:8080/ollin-server/api/auth/token';
+    this.authService.login(form.value, urlAPi).subscribe(data => {
+      this.router.navigateByUrl('/logout');
+    })
   }
 
 }

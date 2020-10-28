@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
-import { CanActivateViaAuthGuard, HttpAuthService, HttpAuthModule } from "http-auth-israel";
+import { HttpAuthenticationZnModule } from "http-authentication-is";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,10 +17,10 @@ import { LogoutComponent } from './components/logout/logout.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpAuthModule,
-    FormsModule
+    FormsModule,
+    HttpAuthenticationZnModule
   ],
-  providers: [HttpAuthService, CanActivateViaAuthGuard],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

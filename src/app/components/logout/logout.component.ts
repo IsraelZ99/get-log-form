@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpAuthService, variabls } from 'http-auth-israel';
-import { environment } from 'src/environments/environment';
+import { Router } from "@angular/router";
+import { HttpAuthenticationZnService } from "http-authentication-is";
 
 @Component({
   selector: 'app-logout',
@@ -9,14 +9,17 @@ import { environment } from 'src/environments/environment';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private httpAuthService: HttpAuthService) { }
+  constructor(
+    private authService: HttpAuthenticationZnService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
   onLogout() {
-    variabls.url = `${environment.urlApi}/auth/logout`;
-    this.httpAuthService.logout();
+    const urlAPi: string = 'http://155.138.216.49:8080/ollin-server/api/auth/logout';
+    if (this.authService.logout(urlAPi)) this.router.navigateByUrl('/');
   }
 
 }
